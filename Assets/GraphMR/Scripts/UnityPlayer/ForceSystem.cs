@@ -41,11 +41,6 @@ namespace GraphMR
         [SerializeField]
         private float _springConstant = 1;
 
-        void Awake()
-        {
-            _nodes = new List<Node>();
-        }
-
         void FixedUpdate()
         {
             ApplyRigidBodyValues();
