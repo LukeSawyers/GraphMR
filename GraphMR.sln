@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphMR", "GraphMR.csproj", "{C0846760-2531-B8EB-D251-B8E95A115FCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphMR.Plugins", "GraphMR.Plugins.csproj", "{10796975-6F5C-EC0D-ADB5-0D0D5BB220BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphMR.Editor.Plugins", "GraphMR.Editor.Plugins.csproj", "{F9829F92-E89F-9AAB-E906-AA3DE611BB5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{C0846760-2531-B8EB-D251-B8E95A115FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0846760-2531-B8EB-D251-B8E95A115FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0846760-2531-B8EB-D251-B8E95A115FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10796975-6F5C-EC0D-ADB5-0D0D5BB220BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10796975-6F5C-EC0D-ADB5-0D0D5BB220BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10796975-6F5C-EC0D-ADB5-0D0D5BB220BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10796975-6F5C-EC0D-ADB5-0D0D5BB220BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9829F92-E89F-9AAB-E906-AA3DE611BB5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9829F92-E89F-9AAB-E906-AA3DE611BB5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9829F92-E89F-9AAB-E906-AA3DE611BB5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9829F92-E89F-9AAB-E906-AA3DE611BB5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
