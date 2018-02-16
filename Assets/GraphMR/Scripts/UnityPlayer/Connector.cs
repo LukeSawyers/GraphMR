@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -104,11 +105,23 @@ namespace GraphMR
             LineRenderer.startWidth = (0.01f);
             LineRenderer.endWidth = (0.02f);
         }
+
+        public SerializableConnector ToSerializable()
+        {
+            return new SerializableConnector(_originNode.UniqueID, _endNode.UniqueID);
+        }
     }
 
-    [System.Serializable]
+    [Serializable]
     public struct SerializableConnector
     {
+        public SerializableConnector(Guid originNodeID, Guid endNodeID)
+        {
+            this.originNodeID = originNodeID;
+            this.endNodeID = endNodeID;
+        }
 
+        public Guid originNodeID;
+        public Guid endNodeID;
     }
 }

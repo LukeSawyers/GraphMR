@@ -315,6 +315,7 @@
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\IGraphSerializer.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Node.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\NodeFactory.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Serialization\SerializationSimulator.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Serialization\UnityJSONSerializer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

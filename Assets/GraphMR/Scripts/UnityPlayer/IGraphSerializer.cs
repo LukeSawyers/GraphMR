@@ -11,7 +11,33 @@ namespace GraphMR
         /// </summary>
         List<string> FileNames { get; }
 
-        
+        /// <summary>
+        /// An identifier for this serializer, what sort of serialization does this serializer do?
+        /// </summary>
+        string Identifier { get; }
+
+        /// <summary>
+        /// This serializer can read
+        /// </summary>
+        bool Read { get; }
+
+        /// <summary>
+        /// This serializer can write
+        /// </summary>
+        bool Write { get; }
+
+        /// <summary>
+        /// Loads a graph from a file 
+        /// </summary>
+        /// <param name="graphName"></param>
+        /// <returns></returns>
+        SerializableGraph LoadGraph(string graphName);
+
+        /// <summary>
+        /// Saves a graph to a file
+        /// </summary>
+        /// <param name="graph"></param>
+        void SaveGraph(SerializableGraph graph);
 
     }
 }

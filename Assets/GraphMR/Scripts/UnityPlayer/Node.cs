@@ -72,6 +72,13 @@ namespace GraphMR
                 }
                 return (Guid)_uniqueID;
             }
+            set
+            {
+                if (_uniqueID == null)
+                {
+                    _uniqueID = value;
+                }
+            }
         }
 
         private Rigidbody _body;
