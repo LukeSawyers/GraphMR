@@ -85,13 +85,15 @@ namespace GraphMR
         [SerializeField]
         private Node _endNode;
 
-        private void Awake()
+        private void Start()
         {
+            ConnectorFactory.Connectors.Add(this);
             ForceSystem.Connectors.Add(this);
         }
 
         private void OnDestroy()
         {
+            ConnectorFactory.Connectors.Remove(this);
             ForceSystem.Connectors.Remove(this);
         }
 
@@ -103,5 +105,10 @@ namespace GraphMR
             LineRenderer.endWidth = (0.02f);
         }
     }
-}
 
+    [System.Serializable]
+    public struct SerializableConnector
+    {
+
+    }
+}

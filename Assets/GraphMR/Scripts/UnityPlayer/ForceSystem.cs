@@ -33,19 +33,28 @@ namespace GraphMR
         private static List<Node> _nodes = new List<Node>();
 
         [SerializeField]
-        private float _repellingForce = 1;
+        private float _repellingForce = 41.5f;
         [SerializeField]
-        private float _repellingForceRadius = 1;
+        private float _repellingForceRadius = 1.68f;
         [SerializeField]
-        private float _dragValue = 10;
+        private float _dragValue = 17.39f;
         [SerializeField]
-        private float _springConstant = 1;
+        private float _springConstant = 72.2f;
+        [SerializeField]
+        private float _gravityValue = 154.2f;
 
-        void FixedUpdate()
+        private void Awake()
+        {
+            _nodes = new List<Node>();
+            _connectors = new List<Connector>();
+        }
+
+        private void FixedUpdate()
         {
             ApplyRigidBodyValues();
             ApplyNodeForces();
             ApplyConnectorForces();
+            ApplyCentreGravity();
         }
 
         private void ApplyRigidBodyValues()
@@ -98,6 +107,21 @@ namespace GraphMR
                 var dist = c.Distance;
                 c.OriginNode.Body.AddForce(_springConstant * (c.EndNode.transform.position - c.OriginNode.transform.position), ForceMode.Force);
                 c.EndNode.Body.AddForce(_springConstant * (c.OriginNode.transform.position - c.EndNode.transform.position), ForceMode.Force);
+            });
+        }
+
+        /// <summary>
+        /// Applies an attraction force to all nodes that moves them towards the origin
+        /// </summary>
+        private void ApplyCentreGravity()
+        {
+            _nodes.ForEach((n) =>
+            {
+                if (n.enabled)
+                {
+                    var toCentre = (Vector3.zero - n.transform.position) * _gravityValue;
+                    n.Body.AddForce(toCentre);
+                }
             });
         }
     }
