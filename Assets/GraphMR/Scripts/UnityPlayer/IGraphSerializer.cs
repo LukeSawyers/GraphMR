@@ -17,16 +17,6 @@ namespace GraphMR
         string Identifier { get; }
 
         /// <summary>
-        /// This serializer can read
-        /// </summary>
-        bool Read { get; }
-
-        /// <summary>
-        /// This serializer can write
-        /// </summary>
-        bool Write { get; }
-
-        /// <summary>
         /// Loads a graph from a file 
         /// </summary>
         /// <param name="graphName"></param>

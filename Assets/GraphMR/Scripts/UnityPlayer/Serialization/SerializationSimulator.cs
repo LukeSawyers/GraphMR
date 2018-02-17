@@ -1,61 +1,54 @@
-﻿using System.Collections;
+﻿using System;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace GraphMR
 {
+    [DisallowMultipleComponent]
     public class SerializationSimulator : MonoBehaviour, IGraphSerializer
     {
         /// <summary>
-        /// Returns an empty list since there will never be files to load
+        /// Returns all graphs that have been saved in this session
         /// </summary>
-        public List<string> FileNames
+        List<string> IGraphSerializer.FileNames
         {
             get
             {
-                return new List<string>();
+                return _savedGraphs.Select(s => s.graphName).ToList();
             }
         }
 
-        public string Identifier
+        string IGraphSerializer.Identifier
         {
             get
             {
-                return "Simulator";
+                return "SIM";
             }
         }
 
-        public bool Read
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        public bool Write
-        {
-            get
-            {
-                return false;
-            }
-        }
+        private List<SerializableGraph> _savedGraphs = new List<SerializableGraph>();
 
         /// <summary>
         /// Manufactures a random graph
         /// </summary>
         /// <param name="graphName"></param>
         /// <returns></returns>
-        public SerializableGraph LoadGraph(string graphName)
+        SerializableGraph IGraphSerializer.LoadGraph(string graphName)
         {
+            var graph = _savedGraphs.SingleOrDefault(s => s.graphName == graphName);
+
+            return graph;
+
             // create a random graph
-            var numberOfNodes = Random.Range(10, 40);
-            var numberOfConnectors = Random.Range(numberOfNodes * 2, numberOfNodes * 5);
+            var numberOfNodes = UnityEngine.Random.Range(10, 40);
+            var numberOfConnectors = UnityEngine.Random.Range(numberOfNodes * 2, numberOfNodes * 5);
             var nodeList = new List<SerializableNode>();
 
             for(int i = 0; i < numberOfNodes; i++)
             {
-                var newNode = new SerializableNode(NodeFactory.GetUniqueID(), i.ToString(), new List<string>(), Color.blue);
+                var newNode = new SerializableNode(Guid.NewGuid(), i.ToString(), new List<string>(), Color.blue);
                 nodeList.Add(newNode);
             }
 
@@ -63,27 +56,27 @@ namespace GraphMR
 
             for (int i = 0; i < numberOfConnectors; i++)
             {
-                var nodeInd = Random.Range(0, numberOfNodes);
+                var nodeInd = UnityEngine.Random.Range(0, numberOfNodes);
                 var originNode = nodeList[nodeInd];
 
-                nodeInd = Random.Range(0, numberOfNodes);
+                nodeInd = UnityEngine.Random.Range(0, numberOfNodes);
                 var endNode = nodeList[nodeInd];
 
                 var newConnector = new SerializableConnector(originNode.uniqueID, endNode.uniqueID);
                 connectorList.Add(newConnector);
             }
 
-            var sGraph = new SerializableGraph("Random Graph", nodeList, connectorList);
+            var sGraph = new SerializableGraph("Random Graph - " + Guid.NewGuid().ToString(), nodeList, connectorList);
             return sGraph;
         }
 
         /// <summary>
-        /// This will throw an exception as graphs cannot be saved with this serializer
+        /// Saves a graph, this will only last for this session
         /// </summary>
         /// <param name="graph"></param>
-        public void SaveGraph(SerializableGraph graph)
+        void IGraphSerializer.SaveGraph(SerializableGraph graph)
         {
-            throw new System.Exception("This serializer cannot save files");
+            _savedGraphs.Add(graph);
         }
     }
 }

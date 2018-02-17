@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C0846760-2531-B8EB-D251-B8E95A115FCB}</ProjectGuid>
+    <ProjectGuid>{B76FF5C2-08CA-B71A-EB12-E7AE87085BE6}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -306,19 +306,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\ArrangementSystem\ForceSystem.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Connector.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\ConnectorFactory.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Graph.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\GraphFactory.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\GraphManager.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\IArrangementSystem.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\IGraphSerializer.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\MonoBehaviourSingleton.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Node.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\NodeFactory.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Serialization\SerializationSimulator.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Serialization\UnityJSONSerializer.cs" />
+    <ProjectReference Include="GraphMR.csproj">
+      <Project>{C0846760-2531-B8EB-D251-B8E95A115FCB}</Project>
+      <Name>GraphMR</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\GraphMR\Scripts\Editor\GraphManagerEditor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

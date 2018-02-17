@@ -5,20 +5,18 @@ using UnityEngine;
 
 namespace GraphMR
 {
-    [RequireComponent(typeof(GraphFactory))]
-    [RequireComponent(typeof(ForceSystem))]
+    [RequireComponent(typeof(IArrangementSystem))]
     [RequireComponent(typeof(IGraphSerializer))]
-    public class GraphManager : MonoBehaviour
+    [DisallowMultipleComponent]
+    public class GraphManager : MonoBehaviourSingleton<GraphManager>
     {
         private List<IGraphSerializer> _serializers = new List<IGraphSerializer>();
 
         private List<Graph> OpenGraphs = new List<Graph>();
 
-        private GraphFactory _graphFactory;
-
-        private void Awake()
+        protected override void Awake()
         {
-            _graphFactory = GetComponent<GraphFactory>();
+            base.Awake();
             _serializers = GetComponents<IGraphSerializer>().ToList();
         }
 
@@ -36,27 +34,7 @@ namespace GraphMR
         /// </summary>
         public void CreateGraph()
         {
-            OpenGraphs.Add(_graphFactory.CreateGraph());
-        }
-        
-        /// <summary>
-        /// Closes the graph and saves it
-        /// </summary>
-        /// <param name="graphName"></param>
-        /// <param name="saveOption"></param>
-        public void CloseAndSaveGraph(string graphName, string saveOption)
-        {
-
-        }
-
-        /// <summary>
-        /// Closes the graph and saves it
-        /// </summary>
-        /// <param name="graphName"></param>
-        /// <param name="saveOption"></param>
-        public void CloseAndSaveGraphAsNew(string graphName, string newName, string saveOption)
-        {
-
+            OpenGraphs.Add(GraphFactory.CreateGraph());
         }
 
         /// <summary>

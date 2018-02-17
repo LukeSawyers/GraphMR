@@ -2,35 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR
+namespace GraphMR.Arrangment
 {
-    public class ForceSystem : MonoBehaviour
+    [DisallowMultipleComponent]
+    public class ForceArrangementSystem : MonoBehaviour, IArrangementSystem
     {
         /// <summary>
         /// All nodes in the scene
         /// </summary>
-        public static List<Node> Nodes
+        List<Node> IArrangementSystem.Nodes
         {
-            get
+            set
             {
-                return _nodes;
+                _nodes = value;
             }
         }
 
         /// <summary>
         /// All nodes in the scene
         /// </summary>
-        public static List<Connector> Connectors
+        List<Connector> IArrangementSystem.Connectors
         {
-            get
+            set
             {
-                return _connectors;
+                _connectors = value;
             }
         }
 
-        private static List<Connector> _connectors = new List<Connector>();
+        /// <summary>
+        /// Enables this force arrangement system
+        /// </summary>
+        void IArrangementSystem.Enable()
+        {
+            this.enabled = true;
+        }
 
-        private static List<Node> _nodes = new List<Node>();
+        /// <summary>
+        /// Disables this force arrangement system, leaves them floating
+        /// </summary>
+        void IArrangementSystem.Disable()
+        {
+            this.enabled = false;
+        }
+
+        private List<Connector> _connectors = new List<Connector>();
+
+        private List<Node> _nodes = new List<Node>();
 
         [SerializeField]
         private float _repellingForce = 41.5f;
@@ -124,5 +141,7 @@ namespace GraphMR
                 }
             });
         }
+
+        
     }
 }

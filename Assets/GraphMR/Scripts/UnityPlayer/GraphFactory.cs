@@ -7,13 +7,13 @@ namespace GraphMR
     /// <summary>
     /// Class for creating graphs used by the GraphManager
     /// </summary>
-    public class GraphFactory : MonoBehaviour
+    public static class GraphFactory
     {
         /// <summary>
         /// Creates a new empty graph
         /// </summary>
         /// <returns></returns>
-        public Graph CreateGraph()
+        public static Graph CreateGraph()
         {
             return CreateGraph(new SerializableGraph("New Graph", new List<SerializableNode>(), new List<SerializableConnector>()));
         }
@@ -23,13 +23,9 @@ namespace GraphMR
         /// </summary>
         /// <param name="serializedGraph"></param>
         /// <returns></returns>
-        public Graph CreateGraph(SerializableGraph serializedGraph)
+        public static Graph CreateGraph(SerializableGraph serializedGraph)
         {
             GameObject GraphObj = new GameObject(serializedGraph.graphName + " root object");
-
-            // add dependencies
-            GraphObj.AddComponent<ConnectorFactory>();
-            GraphObj.AddComponent<NodeFactory>();
 
             // create the graph
             var graph = GraphObj.AddComponent<Graph>();

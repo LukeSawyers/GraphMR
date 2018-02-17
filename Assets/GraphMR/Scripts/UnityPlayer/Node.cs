@@ -66,24 +66,43 @@ namespace GraphMR
         {
             get
             {
-                if(_uniqueID == null)
-                {
-                    _uniqueID = NodeFactory.GetUniqueID();
-                }
-                return (Guid)_uniqueID;
+                return _uniqueID;
             }
             set
             {
-                if (_uniqueID == null)
-                {
-                    _uniqueID = value;
-                }
+                _uniqueID = value;
             }
         }
 
-        private Rigidbody _body;
+        /// <summary>
+        /// This node's graph
+        /// </summary>
+        public Graph Graph
+        {
+            get
+            {
+                return _graph;
+            }
+            set
+            {
+                _graph = value;
+            }
+        }
 
-        private Guid? _uniqueID;
+        /// <summary>
+        /// This node's tags
+        /// </summary>
+        public List<string> Tags
+        {
+            get
+            {
+                return _tags;
+            }
+            set
+            {
+                _tags = value;
+            }
+        }
 
         [SerializeField]
         private string _name = "Untitled";
@@ -97,19 +116,14 @@ namespace GraphMR
         [SerializeField]
         private TextMesh _nameText;
 
-        private Renderer _renderer;
-        
-        private void Start()
-        {
-            ForceSystem.Nodes.Add(this);
-            NodeFactory.Nodes.Add(UniqueID, this);
-        }
+        private Graph _graph;
 
-        private void OnDestroy()
-        {
-            ForceSystem.Nodes.Remove(this);
-            NodeFactory.Nodes.Remove(UniqueID);
-        }
+        private Rigidbody _body;
+
+        private Guid _uniqueID;
+
+        private Renderer _renderer;
+       
 
         private void Update()
         {
@@ -138,7 +152,7 @@ namespace GraphMR
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public struct SerializableNode
     {
         public SerializableNode(Guid uniqueID, string name, List<string> tags, Color color)
@@ -152,6 +166,6 @@ namespace GraphMR
         public Guid uniqueID;
         public Color color;
         public string name;
-        private List<string> tags;
+        public List<string> tags;
     }
 }

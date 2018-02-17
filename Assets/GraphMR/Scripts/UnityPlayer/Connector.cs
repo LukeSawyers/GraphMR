@@ -86,18 +86,6 @@ namespace GraphMR
         [SerializeField]
         private Node _endNode;
 
-        private void Start()
-        {
-            ConnectorFactory.Connectors.Add(this);
-            ForceSystem.Connectors.Add(this);
-        }
-
-        private void OnDestroy()
-        {
-            ConnectorFactory.Connectors.Remove(this);
-            ForceSystem.Connectors.Remove(this);
-        }
-
         private void Update()
         {
             LineRenderer.SetPosition(0, _originNode.transform.position);
@@ -112,6 +100,9 @@ namespace GraphMR
         }
     }
 
+    /// <summary>
+    /// A serializable version of a connector
+    /// </summary>
     [Serializable]
     public struct SerializableConnector
     {

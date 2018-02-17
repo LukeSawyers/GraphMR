@@ -22,22 +22,6 @@ namespace GraphMR.Serialization
             }
         }
 
-        public bool Read
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        public bool Write
-        {
-            get
-            {
-                return true;
-            }
-        }
-
         public SerializableGraph LoadGraph(string graphName)
         {
             throw new System.NotImplementedException();
