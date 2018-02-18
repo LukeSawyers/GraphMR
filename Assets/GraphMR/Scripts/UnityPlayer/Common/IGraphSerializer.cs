@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR
+namespace diagramMR
 {
-    public interface IGraphSerializer
+    public interface IdiagramSerializer
     {
         /// <summary>
         /// The list of files that this serializer can provide
@@ -17,17 +17,17 @@ namespace GraphMR
         string Identifier { get; }
 
         /// <summary>
-        /// Loads a graph from a file 
+        /// Loads a diagram from a file 
         /// </summary>
-        /// <param name="graphName"></param>
+        /// <param name="diagramName"></param>
         /// <returns></returns>
-        SerializableGraph LoadGraph(string graphName);
+        Serializablediagram Loaddiagram(string diagramName);
 
         /// <summary>
-        /// Saves a graph to a file
+        /// Saves a diagram to a file
         /// </summary>
-        /// <param name="graph"></param>
-        void SaveGraph(SerializableGraph graph);
+        /// <param name="diagram"></param>
+        void Savediagram(Serializablediagram diagram);
 
     }
 }

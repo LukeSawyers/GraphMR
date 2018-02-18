@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR
+namespace diagramMR
 {
     [RequireComponent(typeof(LineRenderer))]
     public class Connector : MonoBehaviour

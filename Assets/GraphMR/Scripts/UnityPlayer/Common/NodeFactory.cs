@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR
+namespace diagramMR
 {
     /// <summary>
     /// A factory class for creating and saving node objects
@@ -26,17 +26,17 @@ namespace GraphMR
         /// <summary>
         /// Creates a new blank node
         /// </summary>
-        /// <param name="graph"></param>
+        /// <param name="diagram"></param>
         /// <returns></returns>
-        public static Node CreateNode(Graph graph, string nodeType)
+        public static Node CreateNode(Diagram diagram, string nodeType)
         {
 
             GameObject newNodeObj = Instantiate(Instance._nodeTypes.Single(n => n.NodeTypeName == nodeType).NodeObject);
-            newNodeObj.transform.parent = graph.transform;
+            newNodeObj.transform.parent = diagram.transform;
 
             Node newNode = newNodeObj.AddComponent<Node>();
             newNode.name = "New Node";
-            newNode.UniqueID = graph.GetUniqueID();
+            newNode.UniqueID = diagram.GetUniqueID();
             newNode.NodeType = nodeType;
 
             return newNode;
@@ -45,12 +45,12 @@ namespace GraphMR
         /// <summary>
         /// Creates a node from a serialized node 
         /// </summary>
-        /// <param name="graph"></param>
+        /// <param name="diagram"></param>
         /// <returns></returns>
-        public static Node CreateNode(Graph graph, SerializableNode serializedNode)
+        public static Node CreateNode(Diagram diagram, SerializableNode serializedNode)
         {
             GameObject newNodeObj = Instantiate(Instance._nodeTypes.Single(n => n.NodeTypeName == serializedNode.type).NodeObject);
-            newNodeObj.transform.parent = graph.transform;
+            newNodeObj.transform.parent = diagram.transform;
 
             Node newNode = newNodeObj.AddComponent<Node>();
             newNode.name = serializedNode.name;

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR.Serialization
+namespace diagramMR.Serialization
 {
-    public class UnityJSONSerializer : MonoBehaviour, IGraphSerializer
+    public class UnityJSONSerializer : MonoBehaviour, IdiagramSerializer
     {
         public List<string> FileNames
         {
@@ -22,12 +22,12 @@ namespace GraphMR.Serialization
             }
         }
 
-        public SerializableGraph LoadGraph(string graphName)
+        public Serializablediagram Loaddiagram(string diagramName)
         {
             throw new System.NotImplementedException();
         }
 
-        public void SaveGraph(SerializableGraph graph)
+        public void Savediagram(Serializablediagram diagram)
         {
             throw new System.NotImplementedException();
         }

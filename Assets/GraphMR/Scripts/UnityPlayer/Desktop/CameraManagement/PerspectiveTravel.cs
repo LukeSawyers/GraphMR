@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR.CameraManagement.Desktop
+namespace diagramMR.CameraManagement.Desktop
 {
     [DisallowMultipleComponent]
     public class PerspectiveTravel : MonoBehaviour, ICameraManager

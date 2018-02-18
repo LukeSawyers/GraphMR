@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR
+namespace diagramMR
 {
     /// <summary>
     /// An interface for an Item that can be presented

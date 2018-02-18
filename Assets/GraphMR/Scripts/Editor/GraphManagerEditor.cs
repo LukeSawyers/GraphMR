@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace GraphMR.EditorExtensions
+namespace diagramMR.EditorExtensions
 {
-    [CustomEditor(typeof(GraphManager))]
-    public class GraphManagerEditor : Editor
+    [CustomEditor(typeof(DiagramManager))]
+    public class diagramManagerEditor : Editor
     {
 
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            var graphManager = (GraphManager)target;
+            var diagramManager = (DiagramManager)target;
 
-            if(GUILayout.Button("Create Graph"))
+            if(GUILayout.Button("Create diagram"))
             {
-                graphManager.CreateGraph();
+                diagramManager.Creatediagram();
             }
         }
     }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR.GraphEditing.Desktop
+namespace diagramMR.diagramEditing.Desktop
 {
-    public class DesktopGraphEditor : MonoBehaviour
+    public class DesktopdiagramEditor : MonoBehaviour
     {
 
         // Use this for initialization

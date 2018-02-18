@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR.GraphEditing.Desktop
+namespace diagramMR.diagramEditing.Desktop
 {
-    public interface IGraphEditor
+    public interface IdiagramEditor
     {
 
         

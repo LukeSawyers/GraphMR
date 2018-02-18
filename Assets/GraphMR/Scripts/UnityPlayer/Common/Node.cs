@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR
+namespace diagramMR
 {
     /// <summary>
-    /// Represents a node in the graph
+    /// Represents a node in the diagram
     /// </summary>
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(Renderer))]
@@ -75,17 +75,17 @@ namespace GraphMR
         }
 
         /// <summary>
-        /// This node's graph
+        /// This node's diagram
         /// </summary>
-        public Graph Graph
+        public Diagram diagram
         {
             get
             {
-                return _graph;
+                return _diagram;
             }
             set
             {
-                _graph = value;
+                _diagram = value;
             }
         }
 
@@ -116,7 +116,7 @@ namespace GraphMR
         [SerializeField]
         private TextMesh _nameText;
 
-        private Graph _graph;
+        private Diagram _diagram;
 
         private Rigidbody _body;
 

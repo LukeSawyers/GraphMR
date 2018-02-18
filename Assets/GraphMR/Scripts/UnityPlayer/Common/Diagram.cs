@@ -4,13 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR
+namespace diagramMR
 {
     /// <summary>
-    /// Represents a complete graph
+    /// Represents a complete diagram
     /// </summary>
     [DisallowMultipleComponent]
-    public class Graph : MonoBehaviour
+    public class Diagram : MonoBehaviour
     {
         /// <summary>
         /// A dictionary of all nodes referenced by their Guids
@@ -35,9 +35,9 @@ namespace GraphMR
         }
 
         /// <summary>
-        /// The name of this graph
+        /// The name of this diagram
         /// </summary>
-        public string GraphName
+        public string diagramName
         {
             get
             {
@@ -72,17 +72,17 @@ namespace GraphMR
         }
 
         /// <summary>
-        /// Initialises this graph with a serializable graph
+        /// Initialises this diagram with a serializable diagram
         /// </summary>
         /// <param name="serialized"></param>
-        public void InitialiseGraph(SerializableGraph serialized)
+        public void Initialisediagram(Serializablediagram serialized)
         {
             if (_initialised)
             {
-                throw new System.Exception("Trying to use 'Initialise Graph' on an already initialized graph");
+                throw new System.Exception("Trying to use 'Initialise diagram' on an already initialized diagram");
             }
 
-            StartCoroutine(PopulateGraph(serialized));
+            StartCoroutine(Populatediagram(serialized));
 
             _initialised = true;
 
@@ -93,7 +93,7 @@ namespace GraphMR
         /// </summary>
         /// <param name="serialized"></param>
         /// <returns></returns>
-        private IEnumerator PopulateGraph(SerializableGraph serialized)
+        private IEnumerator Populatediagram(Serializablediagram serialized)
         {
             // create nodes
             var nodes = serialized.nodes;
@@ -118,29 +118,29 @@ namespace GraphMR
         /// Creates a serializable version of this object
         /// </summary>
         /// <returns></returns>
-        public SerializableGraph ToSerializable()
+        public Serializablediagram ToSerializable()
         {
             List<SerializableNode> sNodes = _nodes.Values.Select(n => n.ToSerializable()).ToList();
             List<SerializableConnector> sConnectors = _connectors.Select(c => c.ToSerializable()).ToList();
-            return new SerializableGraph(_name, sNodes, sConnectors);
+            return new Serializablediagram(_name, sNodes, sConnectors);
         }
     }
 
     /// <summary>
-    /// A serializable version of a graph
+    /// A serializable version of a diagram
     /// </summary>
     [System.Serializable]
-    public struct SerializableGraph
+    public struct Serializablediagram
     {
 
-        public SerializableGraph(string graphName, List<SerializableNode> nodes, List<SerializableConnector> connectors)
+        public Serializablediagram(string diagramName, List<SerializableNode> nodes, List<SerializableConnector> connectors)
         {
-            this.graphName = graphName;
+            this.diagramName = diagramName;
             this.nodes = nodes;
             this.connectors = connectors;
         }
 
-        public string graphName;
+        public string diagramName;
         public List<SerializableNode> nodes;
         public List<SerializableConnector> connectors;
     }

@@ -4,23 +4,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR
+namespace diagramMR
 {
     [DisallowMultipleComponent]
-    public class SerializationSimulator : MonoBehaviour, IGraphSerializer
+    public class SerializationSimulator : MonoBehaviour, IdiagramSerializer
     {
         /// <summary>
-        /// Returns all graphs that have been saved in this session
+        /// Returns all diagrams that have been saved in this session
         /// </summary>
-        List<string> IGraphSerializer.FileNames
+        List<string> IdiagramSerializer.FileNames
         {
             get
             {
-                return _savedGraphs.Select(s => s.graphName).ToList();
+                return _saveddiagrams.Select(s => s.diagramName).ToList();
             }
         }
 
-        string IGraphSerializer.Identifier
+        string IdiagramSerializer.Identifier
         {
             get
             {
@@ -28,20 +28,20 @@ namespace GraphMR
             }
         }
 
-        private List<SerializableGraph> _savedGraphs = new List<SerializableGraph>();
+        private List<Serializablediagram> _saveddiagrams = new List<Serializablediagram>();
 
         /// <summary>
-        /// Manufactures a random graph
+        /// Manufactures a random diagram
         /// </summary>
-        /// <param name="graphName"></param>
+        /// <param name="diagramName"></param>
         /// <returns></returns>
-        SerializableGraph IGraphSerializer.LoadGraph(string graphName)
+        Serializablediagram IdiagramSerializer.Loaddiagram(string diagramName)
         {
-            var graph = _savedGraphs.SingleOrDefault(s => s.graphName == graphName);
+            var diagram = _saveddiagrams.SingleOrDefault(s => s.diagramName == diagramName);
 
-            return graph;
+            return diagram;
 
-            // create a random graph
+            // create a random diagram
             var numberOfNodes = UnityEngine.Random.Range(10, 40);
             var numberOfConnectors = UnityEngine.Random.Range(numberOfNodes * 2, numberOfNodes * 5);
             var nodeList = new List<SerializableNode>();
@@ -66,17 +66,17 @@ namespace GraphMR
                 connectorList.Add(newConnector);
             }
 
-            var sGraph = new SerializableGraph("Random Graph - " + Guid.NewGuid().ToString(), nodeList, connectorList);
-            return sGraph;
+            var sdiagram = new Serializablediagram("Random diagram - " + Guid.NewGuid().ToString(), nodeList, connectorList);
+            return sdiagram;
         }
 
         /// <summary>
-        /// Saves a graph, this will only last for this session
+        /// Saves a diagram, this will only last for this session
         /// </summary>
-        /// <param name="graph"></param>
-        void IGraphSerializer.SaveGraph(SerializableGraph graph)
+        /// <param name="diagram"></param>
+        void IdiagramSerializer.Savediagram(Serializablediagram diagram)
         {
-            _savedGraphs.Add(graph);
+            _saveddiagrams.Add(diagram);
         }
     }
 }

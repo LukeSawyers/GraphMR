@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR
+namespace diagramMR
 {
     /// <summary>
-    /// Top level governing manager for the GraphMR application
+    /// Top level governing manager for the diagramMR application
     /// </summary>
     [RequireComponent(typeof(ICameraManager))]
     [RequireComponent(typeof(IPresentationSystem))]
-    [RequireComponent(typeof(GraphManager))]
+    [RequireComponent(typeof(DiagramManager))]
     [DisallowMultipleComponent]
     public class MainManager : MonoBehaviour, IPresenter
     {
@@ -20,7 +20,7 @@ namespace GraphMR
         {
             get
             {
-                return "GraphMR";
+                return "diagramMR";
             }
         }
 
@@ -57,7 +57,7 @@ namespace GraphMR
 
         private List<ICameraManager> _cameraManagers = new List<ICameraManager>();
         private List<IPresentationSystem> _windowSystems = new List<IPresentationSystem>();
-        private GraphManager _graphManager;
+        private DiagramManager _diagramManager;
 
         private ICameraManager _currentCameraManager;
         private IPresentationSystem _currentWindowSystem;
@@ -68,10 +68,10 @@ namespace GraphMR
             _cameraManagers = GetComponents<ICameraManager>().ToList();
             _windowSystems = GetComponents<IPresentationSystem>().ToList();
 
-            // get child graph manager object
-            _graphManager = GetComponent<GraphManager>();
+            // get child diagram manager object
+            _diagramManager = GetComponent<DiagramManager>();
 
-            // enable the first graph manager, ensure all others are disabled
+            // enable the first diagram manager, ensure all others are disabled
             if (_cameraManagers.Count > 0)
             {
                 for (int i = 0; i < _cameraManagers.Count; i++)

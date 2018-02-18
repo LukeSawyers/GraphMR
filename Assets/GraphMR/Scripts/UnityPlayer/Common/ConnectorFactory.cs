@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR
+namespace diagramMR
 {
     /// <summary>
     /// Connector factory singleton produces connectors
@@ -27,13 +27,13 @@ namespace GraphMR
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="graph"></param>
+        /// <param name="diagram"></param>
         /// <param name="originNode"></param>
         /// <returns></returns>
-        public static Connector CreateConnector(Graph graph, string connectorType)
+        public static Connector CreateConnector(Diagram diagram, string connectorType)
         {
             GameObject newConnectorObj = new GameObject("Connector - New Node");
-            newConnectorObj.transform.parent = graph.transform;
+            newConnectorObj.transform.parent = diagram.transform;
 
             Connector newConnector = newConnectorObj.AddComponent<Connector>();
             newConnector.name = "New Connector";
@@ -42,24 +42,24 @@ namespace GraphMR
         }
 
         /// <summary>
-        /// Creates a connector in the given graph using a serialized connector. This graph should already have its nodes created. 
+        /// Creates a connector in the given diagram using a serialized connector. This diagram should already have its nodes created. 
         /// </summary>
-        /// <param name="graph"></param>
+        /// <param name="diagram"></param>
         /// <param name="originNode"></param>
         /// <returns></returns>
-        public static Connector CreateConnector(Graph graph, SerializableConnector serializedConnector)
+        public static Connector CreateConnector(Diagram diagram, SerializableConnector serializedConnector)
         {
             GameObject newConnectorObj = new GameObject("Connector - New Node");
-            newConnectorObj.transform.parent = graph.transform;
+            newConnectorObj.transform.parent = diagram.transform;
 
             Connector newConnector = newConnectorObj.AddComponent<Connector>();
 
             // add origin node
             if(serializedConnector.originNodeID != null)
             {
-                if (graph.Nodes.ContainsKey(serializedConnector.originNodeID))
+                if (diagram.Nodes.ContainsKey(serializedConnector.originNodeID))
                 {
-                    var originNode = graph.Nodes[serializedConnector.originNodeID];
+                    var originNode = diagram.Nodes[serializedConnector.originNodeID];
                     newConnector.OriginNode = originNode;
                 }
             }
@@ -67,9 +67,9 @@ namespace GraphMR
             // add end node
             if (serializedConnector.endNodeID != null)
             {
-                if (graph.Nodes.ContainsKey(serializedConnector.endNodeID))
+                if (diagram.Nodes.ContainsKey(serializedConnector.endNodeID))
                 {
-                    var endNode = graph.Nodes[serializedConnector.endNodeID];
+                    var endNode = diagram.Nodes[serializedConnector.endNodeID];
                     newConnector.EndNode = endNode;
                 }
             }

@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GraphMR
+namespace diagramMR
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(IArrangementSystem))]
-    [RequireComponent(typeof(IGraphSerializer))]
+    [RequireComponent(typeof(IdiagramSerializer))]
     [RequireComponent(typeof(ConnectorFactory))]
     [RequireComponent(typeof(NodeFactory))]
-    public class GraphManager : MonoBehaviour, IPresenter
+    public class DiagramManager : MonoBehaviour, IPresenter
     {
         #region IWindowPresenter
 
@@ -18,7 +18,7 @@ namespace GraphMR
         {
             get
             {
-                return "Graph Manager";
+                return "diagram Manager";
             }
         }
 
@@ -53,14 +53,14 @@ namespace GraphMR
 
         #endregion
 
-        private List<IGraphSerializer> _serializers = new List<IGraphSerializer>();
+        private List<IdiagramSerializer> _serializers = new List<IdiagramSerializer>();
         private List<IArrangementSystem> _arrangementSystems = new List<IArrangementSystem>();
-        private List<Graph> OpenGraphs = new List<Graph>();
+        private List<Diagram> Opendiagrams = new List<Diagram>();
 
         protected virtual void Awake()
         {
             // get serializers
-            _serializers = GetComponents<IGraphSerializer>().ToList();
+            _serializers = GetComponents<IdiagramSerializer>().ToList();
 
             // get arrangement systems and enable the first one
             _arrangementSystems = GetComponents<IArrangementSystem>().ToList();
@@ -77,7 +77,7 @@ namespace GraphMR
             }
             else
             {
-                Debug.LogWarning("Graph Manager, no valid arrangement system available, nodes will not be able to be arranged");
+                Debug.LogWarning("diagram Manager, no valid arrangement system available, nodes will not be able to be arranged");
             }
             
         }
@@ -92,48 +92,48 @@ namespace GraphMR
         }
 
         /// <summary>
-        /// Creates a new empty graph
+        /// Creates a new empty diagram
         /// </summary>
-        public void CreateGraph()
+        public void Creatediagram()
         {
-            OpenGraphs.Add(GraphFactory.CreateGraph());
+            Opendiagrams.Add(DiagramFactory.Creatediagram());
         }
 
         /// <summary>
-        /// Closes an existing graph
+        /// Closes an existing diagram
         /// </summary>
-        /// <param name="graphName"></param>
-        public void CloseGraph(string graphName)
-        {
-
-        }
-
-        /// <summary>
-        /// Loads a graph 
-        /// </summary>
-        /// <param name="graphName"></param>
-        public void LoadGraph(string graphName)
+        /// <param name="diagramName"></param>
+        public void Closediagram(string diagramName)
         {
 
         }
 
         /// <summary>
-        /// Saves a graph
+        /// Loads a diagram 
         /// </summary>
-        /// <param name="graphName"></param>
+        /// <param name="diagramName"></param>
+        public void Loaddiagram(string diagramName)
+        {
+
+        }
+
+        /// <summary>
+        /// Saves a diagram
+        /// </summary>
+        /// <param name="diagramName"></param>
         /// <param name="saveOption"></param>
-        public void SaveGraph(string graphName, string saveOption)
+        public void Savediagram(string diagramName, string saveOption)
         {
 
         }
 
         /// <summary>
-        /// Saves a graph as a new file
+        /// Saves a diagram as a new file
         /// </summary>
-        /// <param name="graphName"></param>
+        /// <param name="diagramName"></param>
         /// <param name="newName"></param>
         /// <param name="saveOption"></param>
-        public void SaveGraphAsNew(string graphName, string newName, string saveOption)
+        public void SavediagramAsNew(string diagramName, string newName, string saveOption)
         {
 
         }

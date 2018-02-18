@@ -311,9 +311,9 @@
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\Connector.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\ConnectorFactory.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\ConnectorType.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\Graph.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\GraphFactory.cs" />
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\GraphManager.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\Diagram.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\DiagramFactory.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\DiagramManager.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\IArrangementSystem.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\ICameraManager.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\IGraphEditor.cs" />
