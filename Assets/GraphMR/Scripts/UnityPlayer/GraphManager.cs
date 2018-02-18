@@ -8,17 +8,61 @@ namespace GraphMR
     [RequireComponent(typeof(IArrangementSystem))]
     [RequireComponent(typeof(IGraphSerializer))]
     [DisallowMultipleComponent]
-    public class GraphManager : MonoBehaviourSingleton<GraphManager>
+    public class GraphManager : MonoBehaviour, IWindowPresenter
     {
+        #region IWindowPresenter
+
+        string IWindowPresenter.WindowName
+        {
+            get
+            {
+                return "Graph Manager";
+            }
+        }
+
+        WindowOption IWindowPresenter.WindowOptions
+        {
+            get
+            {
+                return WindowOption.None;
+            }
+        }
+
+        Vector2 IWindowPresenter.WindowSize
+        {
+            get
+            {
+                return new Vector2(100, 100);
+            }
+        }
+
+        Vector2 IWindowPresenter.WindowLocation
+        {
+            get
+            {
+                return new Vector2(100, 100);
+            }
+        }
+
+        void IWindowPresenter.Draw()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        #endregion
+
         private List<IGraphSerializer> _serializers = new List<IGraphSerializer>();
 
         private List<Graph> OpenGraphs = new List<Graph>();
 
-        protected override void Awake()
+        
+
+        protected virtual void Awake()
         {
-            base.Awake();
             _serializers = GetComponents<IGraphSerializer>().ToList();
         }
+
+        
 
         /// <summary>
         /// Returns the list of available save options
@@ -75,5 +119,7 @@ namespace GraphMR
         {
 
         }
+
+        
     }
 }

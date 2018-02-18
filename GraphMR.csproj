@@ -307,13 +307,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\ArrangementSystem\ForceSystem.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\CameraManagement\Desktop\PanAndOrbit.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\CameraManagement\Desktop\PerspectiveTravel.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Connector.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\ConnectorFactory.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Graph.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\GraphFactory.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\GraphManager.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\IArrangementSystem.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\ICameraManager.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\IGraphSerializer.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\IPresentable.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\IWindowPresenter.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\IWindowSystem.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\MainManager.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\MonoBehaviourSingleton.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Node.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\NodeFactory.cs" />
