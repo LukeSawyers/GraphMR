@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace GraphMR.CameraManagement.Desktop
 {
+    [DisallowMultipleComponent]
     public class PerspectiveTravel : MonoBehaviour, ICameraManager
     {
         #region ICameraManager
@@ -70,38 +71,37 @@ namespace GraphMR.CameraManagement.Desktop
 
         #endregion
 
+        #region Fields
+
+        private float _extendedPressMultiplier = 1f;
+        private bool _rightClickDown = false;
+        private Vector3 _mouseDownStartPosition = new Vector3();
+        private Vector3 _mouseDelta = Vector3.zero;
+        private Vector3 _mouseDownCameraEulerStart = new Vector3();
+
+        #region Fields.Serialized
+
         [Tooltip("The icon to use to present this object")]
         [SerializeField]
         private Sprite _iconImage;
-
         [Tooltip("The rotation sensitivity")]
         [SerializeField]
         private Vector2 _rotationSensitivity = new Vector2(1, 1);
-
         [Tooltip("The movement sensitivity")]
         [SerializeField]
         private Vector3 _movementSensitivity = new Vector3(1, 1, 1);
-
         [Tooltip("Camera")]
         [SerializeField]
         private Camera _controlledCamera;
-
         [Tooltip("Value added for every frame that a key has been pressed to the translation magnitude")]
         [SerializeField]
         private float _extendedPressMultiplierAdder = 0.01f;
 
-        private float _extendedPressMultiplier = 1f;
-
-        private bool _rightClickDown = false;
-
-        private Vector3 _mouseDownStartPosition = new Vector3();
-        private Vector3 _mouseDelta = Vector3.zero;
-
-        private Vector3 _mouseDownCameraEulerStart = new Vector3();
+        #endregion
         
+        #endregion
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
             // right click down
             if (Input.GetMouseButtonDown(1))

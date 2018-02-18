@@ -48,7 +48,7 @@ namespace GraphMR
 
             for(int i = 0; i < numberOfNodes; i++)
             {
-                var newNode = new SerializableNode(Guid.NewGuid(), i.ToString(), new List<string>(), Color.blue);
+                var newNode = new SerializableNode(Guid.NewGuid(), i.ToString(), "", Color.blue);
                 nodeList.Add(newNode);
             }
 

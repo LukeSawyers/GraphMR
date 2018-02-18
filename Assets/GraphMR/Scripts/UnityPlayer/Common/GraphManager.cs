@@ -5,14 +5,16 @@ using UnityEngine;
 
 namespace GraphMR
 {
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(IArrangementSystem))]
     [RequireComponent(typeof(IGraphSerializer))]
-    [DisallowMultipleComponent]
-    public class GraphManager : MonoBehaviour, IWindowPresenter
+    [RequireComponent(typeof(ConnectorFactory))]
+    [RequireComponent(typeof(NodeFactory))]
+    public class GraphManager : MonoBehaviour, IPresenter
     {
         #region IWindowPresenter
 
-        string IWindowPresenter.WindowName
+        string IPresenter.WindowName
         {
             get
             {
@@ -20,7 +22,7 @@ namespace GraphMR
             }
         }
 
-        WindowOption IWindowPresenter.WindowOptions
+        WindowOption IPresenter.WindowOptions
         {
             get
             {
@@ -28,7 +30,7 @@ namespace GraphMR
             }
         }
 
-        Vector2 IWindowPresenter.WindowSize
+        Vector2 IPresenter.WindowSize
         {
             get
             {
@@ -36,7 +38,7 @@ namespace GraphMR
             }
         }
 
-        Vector2 IWindowPresenter.WindowLocation
+        Vector2 IPresenter.WindowLocation
         {
             get
             {
@@ -44,7 +46,7 @@ namespace GraphMR
             }
         }
 
-        void IWindowPresenter.Draw()
+        void IPresenter.Draw()
         {
             throw new System.NotImplementedException();
         }
@@ -52,17 +54,33 @@ namespace GraphMR
         #endregion
 
         private List<IGraphSerializer> _serializers = new List<IGraphSerializer>();
-
+        private List<IArrangementSystem> _arrangementSystems = new List<IArrangementSystem>();
         private List<Graph> OpenGraphs = new List<Graph>();
-
-        
 
         protected virtual void Awake()
         {
+            // get serializers
             _serializers = GetComponents<IGraphSerializer>().ToList();
-        }
 
-        
+            // get arrangement systems and enable the first one
+            _arrangementSystems = GetComponents<IArrangementSystem>().ToList();
+            if(_arrangementSystems.Count > 0)
+            {
+                for (int i = 0; i < _arrangementSystems.Count; i++)
+                {
+                    if(i == 0)
+                    {
+                        
+                    }
+                    _arrangementSystems[i].Disable();
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Graph Manager, no valid arrangement system available, nodes will not be able to be arranged");
+            }
+            
+        }
 
         /// <summary>
         /// Returns the list of available save options

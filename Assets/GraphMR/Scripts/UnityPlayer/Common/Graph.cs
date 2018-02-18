@@ -107,7 +107,7 @@ namespace GraphMR
             var connectors = serialized.connectors;
             foreach(var connector in connectors)
             {
-                var newConnector = ConnectorFactory.CreateConnector(this);
+                var newConnector = ConnectorFactory.CreateConnector(this, connector);
             }
 
 

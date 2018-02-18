@@ -7,7 +7,7 @@ namespace GraphMR
     /// <summary>
     /// Class for creating graphs used by the GraphManager
     /// </summary>
-    public static class GraphFactory
+    public class GraphFactory : MonoBehaviour
     {
         /// <summary>
         /// Creates a new empty graph

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GraphMR
 {
-    public interface IArrangementSystem
+    public interface IArrangementSystem : IPresentable
     {
         /// <summary>
         /// Sets the list of nodes that will be arranged

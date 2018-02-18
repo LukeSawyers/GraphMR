@@ -90,25 +90,25 @@ namespace GraphMR
         }
 
         /// <summary>
-        /// This node's tags
+        /// This node's type
         /// </summary>
-        public List<string> Tags
+        public string NodeType
         {
             get
             {
-                return _tags;
+                return _nodeType;
             }
             set
             {
-                _tags = value;
+                _nodeType = value;
             }
         }
 
         [SerializeField]
         private string _name = "Untitled";
-        
+
         [SerializeField]
-        private List<string> _tags = new List<string>();
+        private string _nodeType = "None";
 
         [SerializeField]
         private Color _nodeColor = Color.cyan;
@@ -148,24 +148,24 @@ namespace GraphMR
         /// <returns></returns>
         public SerializableNode ToSerializable()
         {
-            return new SerializableNode(UniqueID, _name, _tags, _nodeColor);
+            return new SerializableNode(UniqueID, _name, _nodeType, _nodeColor);
         }
     }
 
     [Serializable]
     public struct SerializableNode
     {
-        public SerializableNode(Guid uniqueID, string name, List<string> tags, Color color)
+        public SerializableNode(Guid uniqueID, string name, string type, Color color)
         {
             this.uniqueID = uniqueID;
             this.name = name;
             this.color = color;
-            this.tags = tags;
+            this.type = type;
         }
 
         public Guid uniqueID;
         public Color color;
         public string name;
-        public List<string> tags;
+        public string type;
     }
 }

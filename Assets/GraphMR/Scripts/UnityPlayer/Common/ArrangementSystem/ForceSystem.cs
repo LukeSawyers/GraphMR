@@ -7,6 +7,8 @@ namespace GraphMR.Arrangment
     [DisallowMultipleComponent]
     public class ForceArrangementSystem : MonoBehaviour, IArrangementSystem
     {
+        #region IArrangementSystem
+
         /// <summary>
         /// All nodes in the scene
         /// </summary>
@@ -45,9 +47,35 @@ namespace GraphMR.Arrangment
             this.enabled = false;
         }
 
-        private List<Connector> _connectors = new List<Connector>();
+        #endregion
 
-        private List<Node> _nodes = new List<Node>();
+        #region IPresentable
+
+        string IPresentable.PresenatableName
+        {
+            get
+            {
+                return "Molecular";
+            }
+        }
+
+        string IPresentable.HelpText
+        {
+            get
+            {
+                return "Arranged nodes based on a molecular force model";
+            }
+        }
+
+        Sprite IPresentable.IconImage
+        {
+            get
+            {
+                return _iconImage;
+            }
+        }
+
+        #endregion        
 
         [SerializeField]
         private float _repellingForce = 41.5f;
@@ -59,6 +87,12 @@ namespace GraphMR.Arrangment
         private float _springConstant = 72.2f;
         [SerializeField]
         private float _gravityValue = 154.2f;
+        [SerializeField]
+        private Sprite _iconImage;
+
+        private List<Connector> _connectors = new List<Connector>();
+
+        private List<Node> _nodes = new List<Node>();
 
         private void Awake()
         {
@@ -141,7 +175,5 @@ namespace GraphMR.Arrangment
                 }
             });
         }
-
-        
     }
 }

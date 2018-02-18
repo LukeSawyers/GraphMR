@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GraphMR
 {
-    public interface IWindowSystem
+    public interface IPresentationSystem
     {
         /// <summary>
         /// Enables this window system

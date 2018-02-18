@@ -7,7 +7,7 @@ namespace GraphMR
     /// <summary>
     /// Represents a class that presents a window for UI that is to be managed by the active window system
     /// </summary>
-    public interface IWindowPresenter
+    public interface IPresenter
     {
         /// <summary>
         /// The name of this window

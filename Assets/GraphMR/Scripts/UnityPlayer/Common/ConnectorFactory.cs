@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,15 +8,29 @@ namespace GraphMR
     /// <summary>
     /// Connector factory singleton produces connectors
     /// </summary>
-    public static class ConnectorFactory
+    [DisallowMultipleComponent]
+    public class ConnectorFactory : MonoBehaviour
     {
+        /// <summary>
+        /// The list of available connector types
+        /// </summary>
+        public List<string> ConnectorTypeNames
+        {
+            get
+            {
+                return _connectorTypes.Select(c => c.ConnectorTypeName).ToList();
+            }
+        }
+
+        private List<ConnectorType> _connectorTypes = new List<ConnectorType>();
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="graph"></param>
         /// <param name="originNode"></param>
         /// <returns></returns>
-        public static Connector CreateConnector(Graph graph)
+        public static Connector CreateConnector(Graph graph, string connectorType)
         {
             GameObject newConnectorObj = new GameObject("Connector - New Node");
             newConnectorObj.transform.parent = graph.transform;
