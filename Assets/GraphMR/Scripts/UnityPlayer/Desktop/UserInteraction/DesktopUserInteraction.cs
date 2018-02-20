@@ -5,7 +5,7 @@ using UnityEngine;
 namespace DiagramMR.UserInteraction.Desktop
 {
     [DisallowMultipleComponent]
-    public class DesktopUserInteraction : MonoBehaviour, IUserInteractionSystem
+    public class DesktopUserInteraction : MonoBehaviour, IUserInteractionSystem, IUserInteractable
     {
         /// <summary>
         /// The camera to use for user interaction
@@ -20,6 +20,15 @@ namespace DiagramMR.UserInteraction.Desktop
             {
                 _interactionCamera = value;
             }
+        }
+
+        /// <summary>
+        /// If the raycast hits nothing, create a context menus
+        /// </summary>
+        /// <param name="information"></param>
+        void IUserInteractable.OnRaycastHit(InteractionInformation information)
+        {
+            Debug.Log(string.Format("Raycast Hit on {0}. KeyState {1}", gameObject.name, information.InputKeysState));
         }
 
         [SerializeField]
@@ -44,20 +53,22 @@ namespace DiagramMR.UserInteraction.Desktop
             _altClickDown = Input.GetMouseButtonDown(1);
             _altClickUp = Input.GetMouseButtonUp(1);
 
+            var keyState = (_clickState ? InteractionInformation.ButtonState.PrimaryClick : InteractionInformation.ButtonState.None)
+                    | (_altClickState ? InteractionInformation.ButtonState.AltClick : InteractionInformation.ButtonState.None);
+
+            var keyStateDown = (_clickDown ? InteractionInformation.ButtonState.PrimaryClick : InteractionInformation.ButtonState.None)
+                | (_altClickDown ? InteractionInformation.ButtonState.AltClick : InteractionInformation.ButtonState.None);
+
+            var keyStateUp = (_clickUp ? InteractionInformation.ButtonState.PrimaryClick : InteractionInformation.ButtonState.None)
+                | (_altClickUp ? InteractionInformation.ButtonState.AltClick : InteractionInformation.ButtonState.None);
+
             // raycast
             Ray ray = ((IUserInteractionSystem)this).InteractionCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+
+            // if the raycast hits a collider, find all the interactables
             if (Physics.Raycast(ray, out hit, 100))
             {
-                var keyState = (_clickState ? InteractionInformation.ButtonState.PrimaryClick : InteractionInformation.ButtonState.None)
-                    | (_altClickState ? InteractionInformation.ButtonState.AltClick : InteractionInformation.ButtonState.None);
-
-                var keyStateDown = (_clickDown ? InteractionInformation.ButtonState.PrimaryClick : InteractionInformation.ButtonState.None)
-                    | (_altClickDown ? InteractionInformation.ButtonState.AltClick : InteractionInformation.ButtonState.None);
-
-                var keyStateUp = (_clickUp ? InteractionInformation.ButtonState.PrimaryClick : InteractionInformation.ButtonState.None)
-                    | (_altClickUp ? InteractionInformation.ButtonState.AltClick : InteractionInformation.ButtonState.None);
-
                 var info = new InteractionInformation(keyState, keyStateDown, keyStateUp, ((IUserInteractionSystem)this).InteractionCamera.transform.position, hit.point);
                 var hitObj = hit.collider.gameObject;
                 var interactables = hitObj.GetComponents<IUserInteractable>();
@@ -67,6 +78,22 @@ namespace DiagramMR.UserInteraction.Desktop
                     info.Consumed = true;
                 }
             }
+            // if nothing is hit, send the info to this
+            else
+            {
+                var info = new InteractionInformation(keyState, keyStateDown, keyStateUp, ((IUserInteractionSystem)this).InteractionCamera.transform.position, ray.GetPoint(1f));
+                ((IUserInteractable)this).OnRaycastHit(info);
+            }
+        }
+
+        public void OnFocusEnter()
+        {
+            
+        }
+
+        public void OnFocusExit()
+        {
+            
         }
     }
 }

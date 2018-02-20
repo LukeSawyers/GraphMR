@@ -11,5 +11,14 @@ namespace DiagramMR
         /// </summary>
         void OnRaycastHit(InteractionInformation information);
 
+        /// <summary>
+        /// Called when the focus of the interaction shifts onto this object
+        /// </summary>
+        void OnFocusEnter();
+
+        /// <summary>
+        /// Called when the focus of the interaction shifts away from this object
+        /// </summary>
+        void OnFocusExit();
     }
 }

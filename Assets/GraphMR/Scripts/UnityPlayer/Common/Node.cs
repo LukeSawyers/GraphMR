@@ -8,10 +8,52 @@ namespace DiagramMR
     /// <summary>
     /// Represents a node in the diagram
     /// </summary>
+    [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(Renderer))]
-    public class Node : MonoBehaviour
+    [DisallowMultipleComponent]
+    public class Node : MonoBehaviour, IUserInteractable
     {
+
+        #region IUserInteractable
+
+        void IUserInteractable.OnRaycastHit(InteractionInformation information)
+        {
+            if (_focusedOn)
+            {
+                if(inform)
+
+                if(information.InputKeysDown == InteractionInformation.ButtonState.PrimaryClick)
+                {
+                    _dragging = true;
+                }
+
+                if(information.InputKeysUp == InteractionInformation.ButtonState.PrimaryClick)
+                {
+                    _dragging = false;
+                }
+            }
+
+            if (_dragging)
+            {
+                _latestClickInfo = information;
+            }
+        }
+
+        void IUserInteractable.OnFocusEnter()
+        {
+            _focusedOn = true;
+        }
+
+        void IUserInteractable.OnFocusExit()
+        {
+            _focusedOn = false;
+            _clickedOn = false;
+        }
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// The color of this node
@@ -104,6 +146,12 @@ namespace DiagramMR
             }
         }
 
+        #endregion
+
+        #region Fields
+
+        #region Fields.Serialized
+
         [SerializeField]
         private string _name = "Untitled";
 
@@ -116,6 +164,9 @@ namespace DiagramMR
         [SerializeField]
         private TextMesh _nameText;
 
+        #endregion
+
+        // base node variables
         private Diagram _diagram;
 
         private Rigidbody _body;
@@ -123,12 +174,38 @@ namespace DiagramMR
         private Guid _uniqueID;
 
         private Renderer _renderer;
-       
+
+        // ui variables
+        private bool _focusedOn = false;
+        private bool _clickedOn = false;
+        private bool _dragging = false;
+        private InteractionInformation _clickDownInfo;
+        private InteractionInformation _latestClickInfo;
+
+        #endregion
+
+        #region Methods
+
+        #region Methods.Public
+
+        /// <summary>
+        /// Creates a serializable version of this node
+        /// </summary>
+        /// <returns></returns>
+        public SerializableNode ToSerializable()
+        {
+            return new SerializableNode(UniqueID, _name, _nodeType, _nodeColor);
+        }
+
+        #endregion
+
+        #region Methods.Private
 
         private void Update()
         {
             SetColor();
             TextPositions();
+            RunDragging();
         }
 
         private void SetColor()
@@ -142,14 +219,17 @@ namespace DiagramMR
             _nameText.transform.rotation = Quaternion.LookRotation(awayFromCamera, Vector3.up);
         }
 
-        /// <summary>
-        /// Creates a serializable version of this node
-        /// </summary>
-        /// <returns></returns>
-        public SerializableNode ToSerializable()
+        private void RunDragging()
         {
-            return new SerializableNode(UniqueID, _name, _nodeType, _nodeColor);
+            if (_dragging)
+            {
+
+            }
         }
+
+        #endregion
+
+        #endregion
     }
 
     [Serializable]
