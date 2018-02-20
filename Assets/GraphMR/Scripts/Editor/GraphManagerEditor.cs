@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace diagramMR.EditorExtensions
+namespace DiagramMR.EditorExtensions
 {
     [CustomEditor(typeof(DiagramManager))]
     public class diagramManagerEditor : Editor

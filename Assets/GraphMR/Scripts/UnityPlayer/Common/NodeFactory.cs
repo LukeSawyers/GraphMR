@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace diagramMR
+namespace DiagramMR
 {
     /// <summary>
     /// A factory class for creating and saving node objects

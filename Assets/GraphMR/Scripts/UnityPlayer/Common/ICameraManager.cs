@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace diagramMR
+namespace DiagramMR
 {
     /// <summary>
     /// Interface for a component that manages the main camera

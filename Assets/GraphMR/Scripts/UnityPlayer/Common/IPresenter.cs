@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace diagramMR
+namespace DiagramMR
 {
     /// <summary>
     /// Represents a class that presents a window for UI that is to be managed by the active window system

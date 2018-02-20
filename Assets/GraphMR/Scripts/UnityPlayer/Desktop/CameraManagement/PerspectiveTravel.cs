@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace diagramMR.CameraManagement.Desktop
+namespace DiagramMR.CameraManagement.Desktop
 {
     [DisallowMultipleComponent]
     public class PerspectiveTravel : MonoBehaviour, ICameraManager
@@ -104,7 +104,7 @@ namespace diagramMR.CameraManagement.Desktop
         private void Update()
         {
             // right click down
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(2))
             {
                 _rightClickDown = true;
                 _mouseDownStartPosition = new Vector3(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height);
@@ -113,7 +113,7 @@ namespace diagramMR.CameraManagement.Desktop
             }
 
             // right click up
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(2))
             {
                 _rightClickDown = false;
             }

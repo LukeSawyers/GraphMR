@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace diagramMR
+namespace DiagramMR
 {
     /// <summary>
     /// Class for creating diagrams used by the diagramManager

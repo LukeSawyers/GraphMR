@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace diagramMR.Arrangment
+namespace DiagramMR.Arrangment
 {
     [DisallowMultipleComponent]
     public class ForceArrangementSystem : MonoBehaviour, IArrangementSystem

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace diagramMR.Serialization
+namespace DiagramMR.Serialization
 {
     public class UnityJSONSerializer : MonoBehaviour, IdiagramSerializer
     {

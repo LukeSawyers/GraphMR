@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace diagramMR.diagramEditing.Desktop
+namespace DiagramMR.DiagramEditing.Desktop
 {
     public class DesktopdiagramEditor : MonoBehaviour
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace diagramMR.CameraManagement.Desktop
+namespace DiagramMR.CameraManagement.Desktop
 {
     public class DesktopPanAndOrbit : MonoBehaviour, ICameraManager
     {

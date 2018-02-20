@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace diagramMR
+namespace DiagramMR
 {
     /// <summary>
-    /// Top level governing manager for the diagramMR application
+    /// Top level governing manager for the DiagramMR application
     /// </summary>
     [RequireComponent(typeof(ICameraManager))]
     [RequireComponent(typeof(IPresentationSystem))]
@@ -20,7 +20,7 @@ namespace diagramMR
         {
             get
             {
-                return "diagramMR";
+                return "DiagramMR";
             }
         }
 

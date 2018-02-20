@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace diagramMR
+namespace DiagramMR
 {
     [DisallowMultipleComponent]
     public class SerializationSimulator : MonoBehaviour, IdiagramSerializer
