@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,10 +30,23 @@ namespace DiagramMR.UserInteraction.Desktop
         void IUserInteractable.OnRaycastHit(InteractionInformation information)
         {
             Debug.Log(string.Format("Raycast Hit on {0}. KeyState {1}", gameObject.name, information.InputKeysState));
+
+            // if right click down bring up the menu
+            if(information.InputKeysDown == InteractionInformation.ButtonState.AltClick)
+            {
+                _rightClickMenu.transform.position = information.HitPosition;
+                _rightClickMenu.transform.LookAt(Camera.main.transform);
+                _rightClickMenu.SetActive(true);
+            }
         }
 
         [SerializeField]
         private Camera _interactionCamera;
+
+        [SerializeField]
+        private GameObject _rightClickMenu;
+
+        private List<IUserInteractable> _focused = new List<IUserInteractable>();
 
         private bool _clickState = false;
         private bool _clickDown = false;
@@ -76,13 +90,39 @@ namespace DiagramMR.UserInteraction.Desktop
                 {
                     interactable.OnRaycastHit(info);
                     info.Consumed = true;
+
+                    // run focus method on newly focused objects
+                    if (!_focused.Contains(interactable))
+                    {
+                        interactable.OnFocusEnter();
+                        _focused.Add(interactable);
+                    }
                 }
+
+                // remove focused objects if they are not in the interactables
+                var focusedCopy = new List<IUserInteractable>(_focused);
+                focusedCopy.ForEach(f =>
+                {
+                    if (!interactables.Contains(f))
+                    {
+                        _focused.Remove(f);
+                        f.OnFocusExit();
+                    }
+                });
             }
             // if nothing is hit, send the info to this
             else
             {
                 var info = new InteractionInformation(keyState, keyStateDown, keyStateUp, ((IUserInteractionSystem)this).InteractionCamera.transform.position, ray.GetPoint(1f));
                 ((IUserInteractable)this).OnRaycastHit(info);
+
+                // remove all focus objects
+                var focusedCopy = new List<IUserInteractable>(_focused);
+                focusedCopy.ForEach(f =>
+                {
+                    _focused.Remove(f);
+                    f.OnFocusExit();
+                });
             }
         }
 

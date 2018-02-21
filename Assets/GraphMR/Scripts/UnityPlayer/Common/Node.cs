@@ -20,9 +20,7 @@ namespace DiagramMR
         void IUserInteractable.OnRaycastHit(InteractionInformation information)
         {
             if (_focusedOn)
-            {
-                if(inform)
-
+            { 
                 if(information.InputKeysDown == InteractionInformation.ButtonState.PrimaryClick)
                 {
                     _dragging = true;

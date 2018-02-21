@@ -9,7 +9,6 @@ namespace DiagramMR
     /// Top level governing manager for the DiagramMR application
     /// </summary>
     [RequireComponent(typeof(ICameraManager))]
-    [RequireComponent(typeof(IPresentationSystem))]
     [RequireComponent(typeof(DiagramManager))]
     [DisallowMultipleComponent]
     public class MainManager : MonoBehaviour, IPresenter

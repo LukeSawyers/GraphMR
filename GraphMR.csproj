@@ -87,7 +87,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\ArrangementSystem\ForceSystem.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\ArrangementSystem\ForceArrangementSystem.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\ArrangementSystem\FreeSystem.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\Connector.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\ConnectorFactory.cs" />
@@ -113,6 +113,8 @@
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\Serialization\SerializationSimulator.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\Serialization\UnityJSONSerializer.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\Testing\TestInteractable.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\UserInterface\RightClickMenu.cs" />
+    <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Common\UserInterface\SimpleButton.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Desktop\CameraManagement\PanAndOrbit.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Desktop\CameraManagement\PerspectiveTravel.cs" />
     <Compile Include="Assets\GraphMR\Scripts\UnityPlayer\Desktop\GraphEditing\DesktopGraphEditor.cs" />
